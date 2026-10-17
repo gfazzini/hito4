@@ -5,8 +5,13 @@ function Pizza() {
   const [pizza, setPizza] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/pizzas/p001")
-      .then((response) => response.json())
+    fetch("https://pizzeria-backend-czr3.onrender.com/api/pizzas/p001")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("No se pudo cargar la pizza");
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log("Respuesta de la API:", data);
         setPizza(Array.isArray(data) ? data[0] : data);
@@ -22,10 +27,10 @@ function Pizza() {
     <div className="container my-4">
       <div className="card mx-auto" style={{ maxWidth: "700px" }}>
         <img
-                src="https://images.unsplash.com/photo-1579751626657-72bc17010498?w=800"
-                className="card-img-top"
-                alt={pizza.name}
-                style={{ width: "100%", height: "300px", objectFit: "cover" }}
+          src="https://images.unsplash.com/photo-1579751626657-72bc17010498?w=800"
+          className="card-img-top"
+          alt={pizza.name}
+          style={{ width: "100%", height: "300px", objectFit: "cover" }}
         />
 
         <div className="card-body">
@@ -53,4 +58,3 @@ function Pizza() {
 }
 
 export default Pizza;
-
