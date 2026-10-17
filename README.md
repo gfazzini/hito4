@@ -1,9 +1,5 @@
 
 
-Aplicación web:
-
-Carrito de compras.
-
 Tecnologías utilizadas
 
 - React
